@@ -26,7 +26,6 @@ def Caclulate_CumSum_Profit(Partials, AtR):
     remaining_shares = total_shares
     total_profit = 0
     profit_array = []
-
     for idx, partial in enumerate(Partials):
         # Percentage of shares to close
         shares_to_close = remaining_shares * (partial / 100)
@@ -39,6 +38,8 @@ def Caclulate_CumSum_Profit(Partials, AtR):
 
 # ---------Now we can calculate profit according to probability of outcome across 1000 trades
 
+# Out of 1000 trades, 70% are 2R, 60% are 3R, 30% are 4R, and 5% are 6R. This means that of the 700 trades that reach 2R, 600 will go on to be 3R trades. That means that 
+# only 100 trades will be purely 2R trades (2R, then back to BE). Of the 600, 300 will go on to be 4R, leaving 300 and 3R. Finally, 50 will be full R trades, so 250 will be left at 4R
 def Total_Profit(ProbabilityAtR, CumSum):
     no_of_trades = 1000
     no_of_trades_AtEachR = []
