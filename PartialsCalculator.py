@@ -1,5 +1,6 @@
 from functools import reduce
 import numpy as np
+from typing import List, Set, Dict, Tuple, Optional
 
 # 70% of trades get to 2R
 # 60% get to 3R
@@ -29,7 +30,10 @@ import numpy as np
 # This will generate a range of values for the net profit, each should be stored as a tuple, which has the first element as an array of partial percentages, the second as the NP
 
 # NOTE: Total shares basically represents the dollar risk of the trade. eg if t_s = 1000, then you lose $1000 on a losing trade.
-def Caclulate_CumSum_Profit(Partials, AtR, total_shares):
+# Partials: The percentage of the trade to be cashed in at each partial.
+# AtR: The R value that the trade should be cashed in at.
+# eg Partials = [30, 100], AtR = [2, 3], then cash in 30% at 2R and 100% at 3R
+def Caclulate_CumSum_Profit(Partials: List[int], AtR: List[float], total_shares: int) -> List[float]:
     remaining_shares = total_shares
     total_profit = 0
     profit_array = []
