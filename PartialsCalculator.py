@@ -94,7 +94,7 @@ def Total_Profit(ProbabilityAtR, CumSum, total_shares):
     #     ", s_L: ",
     #     sum_of_losing_trades,
     # )
-    return sum_of_winning_trades - sum_of_losing_trades
+    return (sum_of_winning_trades - sum_of_losing_trades) / total_shares
 
 
 # Divide by total shares to get realised R

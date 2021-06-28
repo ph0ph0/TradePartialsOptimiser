@@ -3,7 +3,7 @@
 import PartialsCalculator as pc
 from typing import List, Set, Dict, Tuple, Optional
 
-def PartialOptimiser(Partials: List[int], AtR: List[float], Probability_AtR: List[float]) -> List[Tuple]:
+def PartialOptimiser(AtR: List[float], Probability_AtR: List[float]) -> List[Tuple]:
     partials_perc_list = list(product(range(0, 101), repeat=len(AtR)))
     results_array = []
 
@@ -22,19 +22,10 @@ def PartialOptimiser(Partials: List[int], AtR: List[float], Probability_AtR: Lis
             if (sum(list(end)) != 0):
                 continue
 
-        total = CalculateTotal(partial_tuple, at_R, Probability_AtR)
+        cumsum = pc.Caclulate_CumSum_Profit(partial_array_, at_R_, total_shares)
+        total = pc.Total_Profit(Probability_AtR_, cumsum, total_shares)
         results_array.append((partial_tuple, total))
     
     sorted_results = sorted(results_array, key = lambda x: x[1], reverse = True)
-    
-
-def Run():
-    t = (0, 100, 0, 0)
-    i = t.index(100)
-    t_1 = t[i+1:]
-    if (sum(list(t_1)) != 0):
-        print(False)
-    else:
-        print(True)
-
-Run()
+    # return top 20 results
+    return sorted_results[:20]
